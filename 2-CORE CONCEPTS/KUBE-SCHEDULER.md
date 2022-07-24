@@ -1,0 +1,19 @@
+# Kube-Scheduler
+
+## Responsibilities
+
+The sole purpose of the kube-scheduler is to schedule pods on nodes.
+
+It uses multiple criteria such as
+- resources requirements and limits
+- taints and tolerations
+- node selectors/affinity
+
+Depending on those criteria, the kube-schedule filter the nodes that are eligible for running the pod and attributes a score to the eligible nodes on a scale of 0 to 10.
+
+This ranking function can be customized.
+
+## Installation
+
+- Automatically if the installation is done with kubeadm
+- Manually by running the kube-scheduler binary
