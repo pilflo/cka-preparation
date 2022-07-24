@@ -1,0 +1,32 @@
+# kube-controller-manager
+
+## Responsibilities
+
+The kube-controller-manager is a process that continuously monitors the state of various components within the system and works towards bringing the whole system to the desired functioning state.
+
+
+## Installation
+
+It is made of multiple controllers (node-controller, service-account-controller, replicaset-controller ...) and forms a single unit called kube-controller-manager.
+
+If installed through kubeadm, it is automatically setup in a kube-system pod called kube-controller-manager.
+
+Like other components, it comes with a lot of options allowing to enable/disable controllers and configure them.
+
+By default all controllers are activated.
+
+## Example
+
+The node-controller is responsible for monitoring the status of the nodes and taking necessary actions to keep the application running.
+
+By default the options are
+```
+--node-monitor-period=5s
+--node-monitor-grace-period=40s
+--pod-eviction-tiemout=5m0s
+```
+
+meaning that 
+- the nodes status are scraped every 5s
+- a probe failing for 40sec results in an *Unreachable* status
+- a node *Unreachable* for 5m is evicted and all its workload are rescheduled to other nodes
