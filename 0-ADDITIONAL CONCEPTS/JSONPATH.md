@@ -13,6 +13,7 @@ kubectl get pods -o=jsonpath='{.items[0].spec.containers[0].image}'
 ```
 
 You can concatenate the result of multiple jsonpath queries.
+
 ```bash
 # Query1
 kubectl get nodes -o=jsonpath='{.items[*].metadata.name}'
@@ -27,7 +28,6 @@ kubectl get nodes -o=jsonpath='{.items[*].metadata.name}{.items[*].status.capaci
 
 At this point the output is not pretty.
 
-
 We can add *"\n"* and *"\t"* to add a bit of formatting.
 
 ```bash
@@ -39,7 +39,7 @@ kubectl get nodes -o=jsonpath='{.items[*].metadata.name}{"\n"}{.items[*].status.
 
 Custom Columns is a way to prettify our outputs and display relevant information.
 
-```bash
+```sh
 # Format
 kubectl get nodes -o=custom-columns=<COLUMN NAME>:<JSON PATH>
 
@@ -60,12 +60,6 @@ kubectl get nodes -o=custom-columns=NAME:.metadata.name,CPU:status.capacity.cpu
 
 You can sort outputs using **--sort-by=** flag.
 
-```
+```sh
 kubectl get nodes --sort-by=.status.capacity.cpu
 ```
-
-
-
-
-
-
